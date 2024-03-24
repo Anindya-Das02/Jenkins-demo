@@ -16,7 +16,6 @@ public class ProductProcessor {
 
     public List<Product> getAllProducts(){
         log.info("fetching all products from DB");
-        log.info("DB fetch Result: {}", productsDatabase);
         return productsDatabase;
     }
 }
