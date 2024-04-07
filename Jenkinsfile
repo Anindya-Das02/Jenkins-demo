@@ -15,6 +15,7 @@ pipeline {
         stage("build") {
             steps {
                 echo "building application version ${APP_VERSION}, started by ${params.team} Team"
+                mvn clean install
             }
         }
 
