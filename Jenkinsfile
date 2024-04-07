@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    tools {
+        maven 'MAVEN_HOME'
+    }
+
     environment {
     		APP_VERSION = '1.0.12'
     }
@@ -14,12 +18,8 @@ pipeline {
     stages {
         stage("build") {
             steps {
-                step{
-                    echo "building application version ${APP_VERSION}, started by ${params.team} Team"
-                }
-                step {
-                    mvn clean install
-                }
+                echo "building application version ${APP_VERSION}, started by ${params.team} Team"
+                sh 'mvn clean install'
             }
         }
 
