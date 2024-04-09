@@ -9,10 +9,10 @@ pipeline {
 
     triggers {
         pollSCM('') // Enabling being build on Push
-      }
+    }
 
     environment {
-    		APP_VERSION = '1.0.12'
+        APP_VERSION = '1.0.12'
     }
 
     parameters {
