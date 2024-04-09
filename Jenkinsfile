@@ -19,8 +19,10 @@ pipeline {
 
     stages {
         stage("greet") {
-            script {
-                welcome("Anindya")
+            steps {
+                script {
+                    welcome("Anindya")
+                }
             }
         }
         stage("build") {
