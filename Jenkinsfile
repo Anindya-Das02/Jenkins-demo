@@ -29,14 +29,17 @@ pipeline {
             steps {
                 echo "building application version ${APP_VERSION}, started by ${params.team} Team"
                 script{
-                    executeMavenGoal("clean install")
+                    executeMavenGoal("clean install -DskipTests")
                 }
             }
         }
 
         stage("test") {
             steps {
-                echo "testing the application..."
+                echo "testing the application, evaluating Junits..."
+                script{
+                    executeMavenGoal("clean test")
+                }
             }
         }
 
