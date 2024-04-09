@@ -1,3 +1,5 @@
+@Library('jenkins-shared-library') _
+
 pipeline {
     agent any
 
@@ -12,14 +14,21 @@ pipeline {
     parameters {
         string(name: 'version', defaultValue: '1.0.1', description: 'enter version of application')
         choice(name: 'team', choices:['Product', 'Data', 'DevOps', 'Config'], description: 'build starter by which Team')
-        booleanParam(name: 'deployApplication', defaultValue: false, description: 'deploy the application')
+        booleanParam(name: 'DEPLOY_APPLICATION', defaultValue: false, description: 'deploy the application?')
     }
 
     stages {
+        stage("greet") {
+            script {
+                welcome("Anindya")
+            }
+        }
         stage("build") {
             steps {
                 echo "building application version ${APP_VERSION}, started by ${params.team} Team"
-                sh 'mvn clean install'
+                script{
+                    executeMavenGoal("clean install")
+                }
             }
         }
 
@@ -32,7 +41,7 @@ pipeline {
         stage("deploy") {
             when {
                 expression {
-                    params.deployApplication
+                    params.DEPLOY_APPLICATION
                 }
             }
             steps {
