@@ -7,6 +7,10 @@ pipeline {
         maven 'MAVEN_HOME'
     }
 
+    triggers {
+        pollSCM('') // Enabling being build on Push
+      }
+
     environment {
     		APP_VERSION = '1.0.12'
     }
