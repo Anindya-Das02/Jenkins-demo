@@ -15,6 +15,7 @@ public class ProductProcessor {
     private final List<Product> productsDatabase;
 
     public List<Product> getAllProducts(){
+
         log.info("fetching all products from DB");
         return productsDatabase;
     }
